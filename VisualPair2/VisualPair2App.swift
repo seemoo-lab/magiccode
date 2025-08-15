@@ -28,6 +28,7 @@ struct VisualPairingSwiftUIApp: App {
                         Text("Scan")
                     }
             }
+            .navigationViewStyle(.stack)
             .preferredColorScheme(.dark)
         }
     }

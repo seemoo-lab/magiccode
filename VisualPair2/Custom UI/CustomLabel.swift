@@ -7,22 +7,29 @@
 
 import SwiftUI
 
-struct SettingsLabel: View {
+struct SettingsLabel<Content: View>: View {
     let imageName: String
     let text: String
     var backgroundColor: Color = Color.blue
+    var rightView: (() -> Content)? = nil
     
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.isEnabled) private var isEnabled: Bool
     
     var body: some View {
-        HStack{
+        HStack {
             SettingsIcon(imageName: imageName, backgroundColor: backgroundColor)
             Text(text.localized())
                 .foregroundColor(.mainColor)
                 .multilineTextAlignment(.leading)
-            Spacer()
             
+            if let rightView = rightView {
+                rightView()
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+            else {
+                Spacer()
+            }
         }
         .frame(height: Constants.SettingsLabelHeight)
         .frame(maxWidth: .infinity)
@@ -42,7 +49,7 @@ struct CustomPickerLabel: View {
     
     var body: some View {
         HStack() {
-            SettingsLabel(imageName: imageName, text: description, backgroundColor: self.backgroundColor)
+            SettingsLabel<EmptyView>(imageName: imageName, text: description, backgroundColor: self.backgroundColor)
             Spacer()
             Text(selection.localized()).foregroundColor(.gray)
                 .animation(nil)
@@ -72,7 +79,7 @@ struct NavigationLinkLabel: View {
     
     var body: some View {
         HStack {
-            SettingsLabel(imageName: imageName, text: text, backgroundColor: backgroundColor)
+            SettingsLabel<EmptyView>(imageName: imageName, text: text, backgroundColor: backgroundColor)
             Spacer()
             
             if(status != "") {
