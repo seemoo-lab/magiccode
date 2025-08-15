@@ -7,11 +7,28 @@
 
 import SwiftUI
 
+// MARK: - Main App
 @main
-struct VisualPair2App: App {
+struct VisualPairingSwiftUIApp: App {
+    init() {
+        let _ = Bundle(path: "/System/Library/PrivateFrameworks/VisualPairing.framework")?.load()
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                NavigationView { GeneratorView() }
+                    .tabItem {
+                        Image(systemName: "qrcode")
+                        Text("Generate")
+                    }
+                NavigationView { ScannerView() }
+                    .tabItem {
+                        Image(systemName: "camera")
+                        Text("Scan")
+                    }
+            }
+            .preferredColorScheme(.dark)
         }
     }
 }
