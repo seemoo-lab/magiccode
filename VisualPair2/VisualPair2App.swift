@@ -10,23 +10,33 @@ import SwiftUI
 // MARK: - Main App
 @main
 struct VisualPairingSwiftUIApp: App {
+    
     init() {
         let _ = Bundle(path: "/System/Library/PrivateFrameworks/VisualPairing.framework")?.load()
     }
-
+    
+    @State var scanning = false
+    
     var body: some Scene {
         WindowGroup {
-            TabView {
-                NavigationView { GeneratorView() }
-                    .tabItem {
-                        Image(systemName: "qrcode")
-                        Text("Generate")
+            
+            VStack {
+                NavigationView {
+                    ZStack {
+                        if scanning {
+                            ScannerView()
+                        }
+                        else {
+                            GeneratorView()
+                        }
                     }
-                NavigationView { ScannerView() }
-                    .tabItem {
-                        Image(systemName: "camera")
-                        Text("Scan")
-                    }
+                    .navigationBarItems(trailing: Button(action: {
+                        scanning.toggle()
+                    }, label: {
+                        Text(scanning ? "Generate Code..." : "Scan Code...")
+                            .id("toggleButton" + scanning.description)
+                    }))
+                }
             }
             .navigationViewStyle(.stack)
             .preferredColorScheme(.dark)

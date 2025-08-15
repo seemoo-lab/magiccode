@@ -29,24 +29,20 @@ struct GeneratorView: View {
     }
     
     var body: some View {
-        
-        NavigationSubView {
-            
+        VStack {
             let codeSize = 180.0
+            
             Image(.appleWatch)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 260)
-                .padding(.top, 30)
-                .padding(.bottom, 50)
                 .background(
                     ZStack {
                         PairingAnimation(size: codeSize*1.2)
                         VPPresenterView(code: code)
+                            .opacity(0.5)
                     }
-                        .frame(width: codeSize, height: codeSize)
-                    //.background(Color.red)
-                        .padding(.bottom, 15)
+                    .frame(width: codeSize, height: codeSize)
                 )
             
             LUILink(destination:  GeneratorSettingsView(
@@ -70,10 +66,12 @@ struct GeneratorView: View {
                 .padding()
                 .background(
                     Capsule()
-                        .foregroundStyle(.gray.opacity(0.3))
+                        .foregroundStyle(.gray.opacity(0.2))
                 )
             }
+            .frame(height: 100, alignment: .bottom)
         }
+        .frame(maxHeight: .infinity)
         .navigationTitle("VisualPair2")
         .onAppear {
             // force reload

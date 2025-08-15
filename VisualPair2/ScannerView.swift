@@ -60,6 +60,9 @@ struct VPScannerView: UIViewControllerRepresentable {
     var onCodeScanned: (String) -> Void
     
     func makeUIViewController(context: Context) -> UIViewController {
+        
+        print("Creating VPScannerViewController")
+        
         let container = UIViewController()
         
         guard
