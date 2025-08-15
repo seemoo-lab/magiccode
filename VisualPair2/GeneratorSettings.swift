@@ -104,7 +104,7 @@ struct GeneratorSettingsView: View {
                                 .pickerStyle(MenuPickerStyle())
                             }
                             else {
-                                Text(materials[materialIndex])
+                                Text(materials[materialIndex-1])
                                     .foregroundStyle(.gray)
                             }
                         }
@@ -125,7 +125,7 @@ struct GeneratorSettingsView: View {
                                 .pickerStyle(MenuPickerStyle())
                             }
                             else {
-                                Text(sizes[sizeIndex])
+                                Text(sizes[sizeIndex-1])
                                     .foregroundStyle(.gray)
                             }
                         }
