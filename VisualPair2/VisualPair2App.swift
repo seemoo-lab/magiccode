@@ -15,31 +15,74 @@ struct VisualPairingSwiftUIApp: App {
         let _ = Bundle(path: "/System/Library/PrivateFrameworks/VisualPairing.framework")?.load()
     }
     
-    @State var scanning = false
-    
     var body: some Scene {
         WindowGroup {
-            
-            VStack {
-                NavigationView {
-                    ZStack {
-                        if scanning {
-                            ScannerView()
-                        }
-                        else {
-                            GeneratorView()
-                        }
-                    }
-                    .navigationBarItems(trailing: Button(action: {
+            ContentView()
+        }
+    }
+}
+
+
+struct ContentView: View {
+    
+    @State var scanning = false
+    
+    var body: some View {
+        ZStack {
+            NavigationView {
+                GeneratorView()
+                .navigationBarItems(trailing: Button(action: {
+                    withAnimation(.smooth) {
                         scanning.toggle()
-                    }, label: {
-                        Text(scanning ? "Generate Code..." : "Scan Code...")
-                            .id("toggleButton" + scanning.description)
-                    }))
-                }
+                    }
+                }, label: {
+                    Text("Scan Code...")
+                }))
             }
-            .navigationViewStyle(.stack)
-            .preferredColorScheme(.dark)
+            .blur(radius: scanning ? 10 : 0)
+            
+            if scanning {
+                Color.black.opacity(0.7)
+                    .contentShape(Rectangle())
+                    .gesture(
+                        DragGesture(minimumDistance: 0)
+                            .onChanged { _ in
+                                hideScanner()
+                            })
+                
+                    .onTapGesture {
+                        hideScanner()
+                    }
+                    .zIndex(.infinity)
+            }
+            
+            
+            ScannerView()
+                .brightness(0.02)
+                .transition(.move(edge: .bottom).animation(.smooth))
+                .zIndex(.infinity)
+                .contentShape(Rectangle())
+                .gesture(
+                    DragGesture(minimumDistance: 0)
+                        .onChanged { _ in
+                            hideScanner()
+                        })
+                .onTapGesture {
+                    withAnimation(.smooth) {
+                        scanning = false
+                    }
+                }
+                .offset(y: scanning ? 0 : UIScreen.main.bounds.height)
+            
+        }
+        .navigationViewStyle(.stack)
+        .preferredColorScheme(.dark)
+    }
+    
+    
+    func hideScanner() {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            scanning = false
         }
     }
 }

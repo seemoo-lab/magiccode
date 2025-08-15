@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 // MARK: - Scan Tab
 struct ScannerView: View {
     @State private var scannedCode: WatchCode? = nil
@@ -29,10 +28,6 @@ struct ScannerView: View {
                 generator.notificationOccurred(.success)
             }
         }
-        .aspectRatio(0.58, contentMode: .fill)
-        .frame(maxWidth: .infinity, maxHeight: .infinity) // fill space
-        .padding(.bottom, 120)
-        
         .luiSheet(isPresented: showSheet, content: {
             NavigationView {
                 if let scannedCode = scannedCode {
@@ -50,7 +45,6 @@ struct ScannerView: View {
                 }
             }
         })
-        .navigationTitle("Scan")
     }
 }
 
@@ -60,8 +54,6 @@ struct VPScannerView: UIViewControllerRepresentable {
     var onCodeScanned: (String) -> Void
     
     func makeUIViewController(context: Context) -> UIViewController {
-        
-        print("Creating VPScannerViewController")
         
         let container = UIViewController()
         
@@ -95,4 +87,9 @@ struct VPScannerView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+}
+
+
+#Preview {
+    ScannerView()
 }
