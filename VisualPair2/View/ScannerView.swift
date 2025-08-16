@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Scan Tab
 struct ScannerView: View {
     @State private var scannedCode: WatchCode? = nil
     @State private var isSheetPresented = false

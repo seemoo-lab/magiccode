@@ -38,7 +38,7 @@ struct GeneratorSettingsView: View {
         "Vapour-Polished Natural",
         "Vapour-Polished Alternate"
     ]
-
+    
     private let sizes = [
         "42 mm",
         "38 mm",
@@ -47,8 +47,11 @@ struct GeneratorSettingsView: View {
     ]
     
     var body: some View {
+        
         NavigationSubView {
+            
             CustomSection {
+                
                 LabeledTextField(text: $deviceName, imageName: "textformat", labelText: "Bluetooth Name", labelColor: .blue, defaultText: "Name", characterLimit: 8, inputOptions: nil, allowsEditing: canEdit)
                 
                 LabeledTextField(text: $watchOSVersion, imageName: "arrow.down.applewatch", labelText: "watchOS Version", labelColor: .green, defaultText: "Version", characterLimit: nil, inputOptions: [.numbers, .dots], allowsEditing: canEdit)
@@ -85,24 +88,21 @@ struct GeneratorSettingsView: View {
                         }
                     }
                 }
-
-                // Size picker
-                HStack {
-                    SettingsLabel(imageName: "ruler", text: "Size", backgroundColor: .indigo) {
-                        ZStack {
-                            if canEdit {
-                                Picker("Size", selection: $sizeIndex) {
-                                    ForEach(1...sizes.count, id: \.self) { index in
-                                        Text(sizes[index - 1])
-                                            .tag(index)
-                                    }
+                
+                SettingsLabel(imageName: "ruler", text: "Size", backgroundColor: .indigo) {
+                    ZStack {
+                        if canEdit {
+                            Picker("Size", selection: $sizeIndex) {
+                                ForEach(1...sizes.count, id: \.self) { index in
+                                    Text(sizes[index - 1])
+                                        .tag(index)
                                 }
-                                .pickerStyle(MenuPickerStyle())
                             }
-                            else {
-                                Text(sizes[sizeIndex-1])
-                                    .foregroundStyle(.gray)
-                            }
+                            .pickerStyle(MenuPickerStyle())
+                        }
+                        else {
+                            Text(sizes[sizeIndex-1])
+                                .foregroundStyle(.gray)
                         }
                     }
                 }

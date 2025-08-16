@@ -8,7 +8,6 @@
 import SwiftUI
 import UIKit
 
-// MARK: - Generate Tab
 struct GeneratorView: View {
     @AppStorage("deviceName") private var deviceName = "21716DEI"
     @AppStorage("watchOSVersion") private var watchOSVersion = "7.3.3"
@@ -19,7 +18,6 @@ struct GeneratorView: View {
     @AppStorage("materialIndex") private var materialIndex = 1
     @AppStorage("sizeIndex") private var sizeIndex = 1
     
-    // 0x72 || random || 0x63 || check
     private var oobKey: String {
         "72" + random + "63" + check
     }
@@ -30,6 +28,7 @@ struct GeneratorView: View {
     
     var body: some View {
         VStack {
+            
             let codeSize = 180.0
             
             Image(.appleWatch)
