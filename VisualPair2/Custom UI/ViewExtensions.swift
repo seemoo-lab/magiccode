@@ -8,6 +8,15 @@
 import SwiftUI
 
 
+public func copyToClipboard(string: String?) {
+    if let string = string {
+        doubleVibration()
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = string
+    }
+}
+
+
 /// Runs the closure after the specified seconds on the main thread.
 public func runAfter(seconds: Double, _ action: @escaping () -> ()) {
     DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {

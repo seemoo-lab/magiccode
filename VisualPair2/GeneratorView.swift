@@ -73,14 +73,6 @@ struct GeneratorView: View {
         }
         .frame(maxHeight: .infinity)
         .navigationTitle("VisualPair2")
-        .onAppear {
-            // force reload
-            sizeIndex = sizeIndex + 1
-            
-            runAfter(seconds: 0.1) {
-                sizeIndex = sizeIndex - 1
-            }
-        }
     }
 }
 
@@ -101,9 +93,14 @@ struct VPPresenterView: UIViewRepresentable {
                 presenter.centerXAnchor.constraint(equalTo: container.centerXAnchor),
                 presenter.centerYAnchor.constraint(equalTo: container.centerYAnchor)
             ])
-            presenter.perform(NSSelectorFromString("setVerificationCode:"), with: code)
-            presenter.perform(NSSelectorFromString("start"))
+            
+            // Set the code and start the presenter
+            runAfter(seconds: 0.1) {
+                presenter.perform(NSSelectorFromString("setVerificationCode:"), with: code)
+                presenter.perform(NSSelectorFromString("start"))
+            }
         }
+        
         return container
     }
     

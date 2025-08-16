@@ -49,48 +49,23 @@ struct GeneratorSettingsView: View {
     var body: some View {
         NavigationSubView {
             CustomSection {
-                // Device name input
-                SettingsLabel(imageName: "textformat", text: "Bluetooth Name") {
-                    TextField("Name", text: $deviceName)
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.mainColor)
-                }
+                LabeledTextField(text: $deviceName, imageName: "textformat", labelText: "Bluetooth Name", labelColor: .blue, defaultText: "Name", characterLimit: 8, inputOptions: nil, allowsEditing: canEdit)
                 
-                SettingsLabel(imageName: "arrow.down.applewatch", text: "watchOS Version", backgroundColor: .green) {
-                    TextField("Version", text: $watchOSVersion)
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.mainColor)
-                }
+                LabeledTextField(text: $watchOSVersion, imageName: "arrow.down.applewatch", labelText: "watchOS Version", labelColor: .green, defaultText: "Version", characterLimit: nil, inputOptions: [.numbers, .dots], allowsEditing: canEdit)
                 
-                SettingsLabel(imageName: "applewatch.radiowaves.left.and.right", text: "Pairing Version", backgroundColor: .orange) {
-                    TextField("Version", text: $pairingVersion)
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.mainColor)
-                }
+                LabeledTextField(text: $pairingVersion, imageName: "applewatch.radiowaves.left.and.right", labelText: "Pairing Version", labelColor: .orange, defaultText: "Version", characterLimit: nil, inputOptions: .numbers, allowsEditing: canEdit)
                 
-                SettingsLabel(imageName: "inset.filled.triangle", text: "Max. Pairing Vers.", backgroundColor: .red) {
-                    TextField("Version", text: $maxPairingVersion)
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.mainColor)
-                }
+                LabeledTextField(text: $maxPairingVersion, imageName: "inset.filled.triangle", labelText: "Max. Pairing Vers.", labelColor: .red, defaultText: "Version", characterLimit: nil, inputOptions: .numbers, allowsEditing: canEdit)
             }
             
             CustomSection(header: "Verification Code") {
-                SettingsLabel(imageName: "dice", text: "Random") {
-                    TextField("Random", text: $random)
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.mainColor)
-                }
                 
-                SettingsLabel(imageName: "checkmark", text: "Check", backgroundColor: .green) {
-                    TextField("Check", text: $check)
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.mainColor)
-                }
+                LabeledTextField(text: $random, imageName: "dice", labelText: "Random", labelColor: .blue, defaultText: "Random", characterLimit: 32, inputOptions: .hex, allowsEditing: canEdit)
+                
+                LabeledTextField(text: $check, imageName: "checkmark", labelText: "Check", labelColor: .green, defaultText: "Check", characterLimit: 32, inputOptions: .hex, allowsEditing: canEdit)
             }
             
             CustomSection(header: "Watch Appearance") {
-                // Material picker
                 HStack {
                     SettingsLabel(imageName: "paintbrush.pointed.fill", text: "Material", backgroundColor: .orange) {
                         ZStack {
@@ -139,6 +114,10 @@ struct GeneratorSettingsView: View {
                     .lineLimit(nil)
                     .padding(.vertical)
                     .frame(maxWidth: .infinity)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        copyToClipboard(string: code)
+                    }
             }
         }
         .navigationTitle(canEdit ? "Settings" : "Info")

@@ -58,6 +58,8 @@ struct PairingAnimation: View {
                     withAnimation(.easeInOut(duration: 0.5)) {
                         opacity = 1.0
                     }
+                    
+                    player.play()
                 }
         }
     }
