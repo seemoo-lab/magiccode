@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Main App
 @main
 struct VisualPairingSwiftUIApp: App {
     
@@ -21,7 +20,6 @@ struct VisualPairingSwiftUIApp: App {
         }
     }
 }
-
 
 struct ContentView: View {
     
