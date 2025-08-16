@@ -56,23 +56,24 @@ struct ContentView: View {
                     .zIndex(.infinity)
             }
             
-            
-            ScannerView()
-                .brightness(0.02)
-                .transition(.move(edge: .bottom).animation(.smooth))
-                .zIndex(.infinity)
-                .contentShape(Rectangle())
-                .gesture(
-                    DragGesture(minimumDistance: 0)
-                        .onChanged { _ in
-                            hideScanner()
-                        })
-                .onTapGesture {
-                    withAnimation(.smooth) {
-                        scanning = false
+            if scanning {
+                ScannerView()
+                    .brightness(0.02)
+                    .contentShape(Rectangle())
+                    .gesture(
+                        DragGesture(minimumDistance: 0)
+                            .onChanged { _ in
+                                hideScanner()
+                            })
+                    .onTapGesture {
+                        withAnimation(.smooth) {
+                            scanning = false
+                        }
                     }
-                }
-                .offset(y: scanning ? 0 : UIScreen.main.bounds.height)
+                    .transition(.move(edge: .bottom))
+                    .zIndex(.infinity)
+            }
+                //.offset(y: scanning ? 0 : UIScreen.main.bounds.height)
             
         }
         .navigationViewStyle(.stack)

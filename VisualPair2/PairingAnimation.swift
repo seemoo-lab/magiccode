@@ -11,13 +11,13 @@ import AVKit
 struct PairingAnimation: View {
     
     @State var opacity = 0.0
-    
-    private let player: AVPlayer?
+    @State var player: AVPlayer?
     private let size: CGFloat
     
     @Environment(\.scenePhase) private var scenePhase
     
     init(size: CGFloat) {
+        
         self.player = {
             guard let url = Bundle.main.url(forResource: "Loop-regular", withExtension: "mov") else {
                 return nil
