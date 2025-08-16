@@ -1,5 +1,5 @@
 //
-//  GeneratorSettings.swift
+//  GeneratorSettingsView.swift
 //  VisualPair2
 //
 //  Created by Leon Böttger on 15.08.25.

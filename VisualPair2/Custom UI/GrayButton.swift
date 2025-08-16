@@ -1,6 +1,6 @@
 //
-//  File.swift
-//
+//  GrayButton.swift
+//  AirGuard
 //
 //  Created by Leon Böttger on 16.03.24.
 //

@@ -1,5 +1,5 @@
 //
-//  Scanner.swift
+//  ScannerView.swift
 //  VisualPair2
 //
 //  Created by Leon Böttger on 11.08.25.
