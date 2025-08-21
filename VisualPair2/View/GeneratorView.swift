@@ -71,7 +71,7 @@ struct GeneratorView: View {
             .frame(height: 100, alignment: .bottom)
         }
         .frame(maxHeight: .infinity)
-        .navigationTitle("VisualPair2")
+        .navigationTitle("MagicCode")
     }
 }
 

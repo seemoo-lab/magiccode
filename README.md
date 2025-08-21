@@ -1,4 +1,4 @@
-# VisualPair2
+# MagicCode
 
 <p align="center" style="display: flex; gap: 4px; flex-wrap: nowrap;">
   <img src="https://github.com/user-attachments/assets/a72a80dd-0600-47d7-b0af-1784e6257e3b" alt="IMG_4055-portrait" style="width: 24%; height: auto;" />
@@ -7,4 +7,4 @@
   <img src="https://github.com/user-attachments/assets/fc12b4dd-9f31-446d-b9c1-fce584181db2" alt="IMG_4059-portrait" style="width: 24%; height: auto;" />
 </p>
 
-VisualPair2 is an app that mocks parts of the Apple Watch pairing process using Apple's private VisualPairing framework. This project builds on top of https://github.com/rec0de/VisualPairingHack and https://github.com/insidegui/VisualPairingHack
+MagicCode is an app that mocks parts of the Apple Watch pairing process using Apple's private VisualPairing framework. This project builds on top of https://github.com/insidegui/VisualPairingHack
