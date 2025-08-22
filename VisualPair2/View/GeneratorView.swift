@@ -39,7 +39,7 @@ struct GeneratorView: View {
                     ZStack {
                         PairingAnimation(size: codeSize*1.2)
                         VPPresenterView(code: code)
-                            .opacity(0.5)
+                            .opacity(1.0)
                     }
                     .frame(width: codeSize, height: codeSize)
                 )
