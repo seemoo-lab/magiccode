@@ -81,8 +81,12 @@ struct GeneratorSettingsView: View {
                                 }
                                 .pickerStyle(MenuPickerStyle())
                             }
-                            else {
+                            else if(materialIndex < materials.count) {
                                 Text(materials[materialIndex-1])
+                                    .foregroundStyle(.gray)
+                            }
+                            else {
+                                Text("unknown(\(materialIndex))")
                                     .foregroundStyle(.gray)
                             }
                         }
@@ -100,8 +104,12 @@ struct GeneratorSettingsView: View {
                             }
                             .pickerStyle(MenuPickerStyle())
                         }
-                        else {
+                        else if(sizeIndex < sizes.count) {
                             Text(sizes[sizeIndex-1])
+                                .foregroundStyle(.gray)
+                        }
+                        else {
+                            Text("unknown(\(sizeIndex))")
                                 .foregroundStyle(.gray)
                         }
                     }
